@@ -26,7 +26,61 @@
 	 		$this->render('timeline');
 		}
 		public function painel(){
+			$this->validaAutenticacao();
+			$usuario=Container::getModel('usuario');
+	 			$usuario->__set('id', $_SESSION['id']);
+	 			$this->view->infoUsuario=$usuario->pegaInfoUsuario();
 			$this->render('painel');
+		}
+		public function clientes(){
+						$this->validaAutenticacao();
+			$usuario=Container::getModel('usuario');
+	 			$usuario->__set('id', $_SESSION['id']);
+	 			$this->view->infoUsuario=$usuario->pegaInfoUsuario();
+			$this->render('clientes');
+		}
+		public function horarios(){
+						$this->validaAutenticacao();
+			$usuario=Container::getModel('usuario');
+	 			$usuario->__set('id', $_SESSION['id']);
+	 			$this->view->infoUsuario=$usuario->pegaInfoUsuario();
+			$this->render('horarios');
+		}
+		public function configs(){
+			$this->validaAutenticacao();
+			$usuario=Container::getModel('usuario');
+	 		$usuario->__set('id', $_SESSION['id']);
+	 		$this->view->infoUsuario=$usuario->pegaInfoUsuario();
+			$this->render('configs');
+		}
+		public function novocliente(){
+			$this->validaAutenticacao();
+			$usuario=Container::getModel('usuario');
+	 		$usuario->__set('id', $_SESSION['id']);
+	 		$this->view->infoUsuario=$usuario->pegaInfoUsuarioLog(); // editar usuario pegaInfoUsuario
+			$usuario->__set('nomeUsuario', $_POST['nomeUsuario']);
+			$usuario->__set('emailUsuario', $_POST['emailUsuario']);
+			$usuario->__set('nickUsuario', $_POST['nickUsuario']);
+			$usuario->__set('cpfUsuario', $_POST['cpfUsuario']);
+			$usuario->__set('rgUsuario', $_POST['rgUsuario']);
+			$usuario->__set('nascUsuario', $_POST['nascUsuario']);
+			$usuario->__set('naciUsuario', $_POST['naciUsuario']);
+			$usuario->__set('cepUsuario', $_POST['cepUsuario']);
+			$usuario->__set('endUsuario', $_POST['endUsuario']);
+			$usuario->__set('rank', $_POST['rank']);
+			$usuario->__set('senhaUsuario',md5($_POST['senhaUsuario']));
+			if($usuario->validarcadastro() && count($usuario->getUsuarioPorEmail())==0){
+				$usuario->salvar();	
+				$this->render('clientes');
+			}else {
+				$this->view->usuario=array('nome'=>$_POST['nome'],'email'=>$_POST['email'],'senha'=>$_POST['senha'],);
+				$this->view->erroCadastro=true;
+				$this->render('novocliente');
+			}
+			$this->render('novocliente');
+		}
+		public function inicial(){
+			$this->render('inicial');
 		}
 		public function tweet(){
 			$this->validaAutenticacao();

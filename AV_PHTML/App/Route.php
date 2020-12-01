@@ -20,6 +20,31 @@
 				'controller'=>'appController',
 				'action'=>'painel'
 			);
+			$routes['horarios'] = array(
+				'route' =>'/horarios',
+				'controller'=>'appController',
+				'action'=>'horarios'
+			);
+			$routes['novocliente'] = array(
+				'route' =>'/novocliente',
+				'controller'=>'appController',
+				'action'=>'novocliente'
+			);
+			$routes['inicial'] = array(
+				'route' =>'/inicial',
+				'controller'=>'appController',
+				'action'=>'inicial'
+			);
+			$routes['clientes'] = array(
+				'route' =>'/clientes',
+				'controller'=>'appController',
+				'action'=>'clientes'
+			);
+			$routes['configs'] = array(
+				'route' =>'/configs',
+				'controller'=>'appController',
+				'action'=>'configs'
+			);
 			$routes['inscreverse'] = array(
 				'route' =>'/inscreverse',
 				'controller'=>'indexController',

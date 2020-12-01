@@ -13,7 +13,12 @@
 	 			session_start();
 	 			$_SESSION['id'] = $usuario->__get('id');
 	 			$_SESSION['nome'] = $usuario->__get('nome');
-	 			header('Location: /painel');
+	 			if($usuario->__get('rank')==9){
+	 				header('Location: /painel');
+	 			}else{
+	 				header('Location: /inicial');
+	 			}
+	 			
 	 		}else{
 	 			header('Location:/login?login=erro');
 	 		}

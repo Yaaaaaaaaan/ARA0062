@@ -6,8 +6,8 @@ create table usuario(
 	nickUsuario varchar(40) not null unique,
 	emailUsuario varchar(150) not null unique,
 	senhaUsuario varchar(32) not null,
-	dataCad datetime default current_timestamp,
-	dataAlt datetime default current_timestamp
+	dataCad datetime default current_timestamp
+	
 );
 create table dadosUsuario(
 	codDadosU int(11) not null  auto_increment primary key,
@@ -15,7 +15,12 @@ create table dadosUsuario(
 	cpfUsuario int(11) not null unique,
 	rgUsuario int(9) not null unique,
 	rank int(3) not null,
-	foreign key (idUsuarioFk) references usuario (idUsuario)
+	endUsuario text not null,
+	cepUsuario int(12) not null,
+	naciUsuario text,
+	nascUsuario date,
+	foreign key (idUsuarioFk) references usuario (idUsuario),
+	dataAlt datetime default current_timestamp
 );
 create table agendamento(
 	codAgend int(11) not null auto_increment primary key,

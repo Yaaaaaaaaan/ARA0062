@@ -46,7 +46,8 @@ class Usuario extends Model{
 		return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 	}
 	public function autenticar(){
-		$query= "select idUsuario, nomeUsuario, nickUsuario, emailUsuario from usuario where :email in (nickUsuario , emailUsuario) and senhaUsuario = :senha";
+		$query= "select u.idUsuario, u.nomeUsuario, u.nickUsuario, u.emailUsuario, d.idUsuarioFk, d.rank
+		 from usuario as u inner join dadosUsuario as d on u.idUsuario = d.idUsuarioFk where :email in (u.nickUsuario , u.emailUsuario) and u.senhaUsuario = :senha";
 		$stmt=$this->db->prepare($query);
 		$stmt->bindValue(':email', $this->__get('email'));
 		$stmt->bindValue(':senha', $this->__get('senha'));
@@ -55,8 +56,25 @@ class Usuario extends Model{
 		if($usuario['idUsuario'] !='' && $usuario['nomeUsuario'] != ''){
 			$this->__set('id', $usuario['idUsuario']);
 			$this->__set('nome', $usuario['nomeUsuario']);
+			$this->__set('rank', $usuario['rank']);
 		}
 		return $this;
+	}
+	public function pegaInfoUsuario(){
+		$query = "select u.idUsuario, u.nomeUsuario, u.nickUsuario, u.emailUsuario, d.idUsuarioFk, d.rank,d.rgUsuario,d.cpfUsuario,d.endUsuario,d.nascUsuario,d.naciUsuario,d.cepUsuario
+		 from usuario as u inner join dadosUsuario as d on u.idUsuario = d.idUsuarioFk where idUsuario= :id_usuario";
+		$stmt=$this->db->prepare($query);
+			$stmt->bindValue(':id_usuario', $this->__get('id'));
+			$stmt->execute();
+			return $stmt->fetch(\PDO::FETCH_ASSOC);
+	}
+	public function pegaInfoUsuarioLog(){
+		$query = "select idUsuario, nomeUsuario, nickUsuario
+		 from usuario where idUsuario= :id_usuario";
+		$stmt=$this->db->prepare($query);
+			$stmt->bindValue(':id_usuario', $this->__get('id'));
+			$stmt->execute();
+			return $stmt->fetch(\PDO::FETCH_ASSOC);
 	}
 	public function getAll(){
 		$query = "
