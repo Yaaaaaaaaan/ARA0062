@@ -15,6 +15,21 @@
 				'controller'=>'appController',
 				'action'=>'criarnovo'
 			);
+			$routes['cadastroCliente'] = array(
+				'route' =>'/cadastroCliente',
+				'controller'=>'appController',
+				'action'=>'cadastroCliente'
+			);
+			$routes['concluirNovoCliente'] = array(
+				'route' =>'/concluirNovoCliente',
+				'controller'=>'appController',
+				'action'=>'concluirNovoCliente'
+			);
+			$routes['finalizarNovoCliente'] = array(
+				'route' =>'/finalizarNovoCliente',
+				'controller'=>'appController',
+				'action'=>'finalizarNovoCliente'
+			);
 			$routes['painel'] = array(
 				'route' =>'/painel',
 				'controller'=>'appController',

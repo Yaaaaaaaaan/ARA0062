@@ -2,10 +2,10 @@
 namespace App\Models;
 use MF\Model\Model;
 class Usuario extends Model{
-	private $id;
-	private $email;
-	private $nome;
-	private $senha;
+	private $idUsuario;
+	private $emailUsuario;
+	private $nomeUsuario;
+	private $senhaUsuario;
 
 	public function __get($atributo){
 		return $this->$atributo;
@@ -14,7 +14,22 @@ class Usuario extends Model{
 	public function __set($atributo,$valor){
 		$this->$atributo=$valor;
 	}
-
+	public function pegaInfoUsuario(){
+		$query = "select u.idUsuario, u.nomeUsuario, u.nickUsuario, u.emailUsuario, d.idUsuarioFk, u.rank,d.rgUsuario,d.cpfUsuario,d.endUsuario,d.nascUsuario,d.naciUsuario,d.cepUsuario
+		 from usuario as u inner join dadosUsuario as d on u.idUsuario = d.idUsuarioFk where idUsuario= :id_usuario";
+		$stmt=$this->db->prepare($query);
+			$stmt->bindValue(':id_usuario', $this->__get('id'));
+			$stmt->execute();
+			return $stmt->fetch(\PDO::FETCH_ASSOC);
+	}
+	public function pegaInfoUsuarionovo(){
+		$query = "select u.idUsuario, u.nomeUsuario, u.nickUsuario, u.emailUsuario, d.idUsuarioFk, u.rank,d.rgUsuario,d.cpfUsuario,d.endUsuario,d.nascUsuario,d.naciUsuario,d.cepUsuario
+		 from usuario as u inner join dadosUsuario as d on u.idUsuario = d.idUsuarioFk where idUsuario= :id_usuario";
+		$stmt=$this->db->prepare($query);
+			$stmt->bindValue(':id_usuario', $this->__get('id'));
+			$stmt->execute();
+			return $stmt->fetch(\PDO::FETCH_ASSOC);
+	}
 	public function salvar(){
 		$query="insert into usuario (nomeUsuario,emailUsuario,nickUsuario,senhaUsuario) values (:nome,:email,:nick,:senha)";
 		$stmt= $this->db->prepare($query);
@@ -46,29 +61,22 @@ class Usuario extends Model{
 		return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 	}
 	public function autenticar(){
-		$query= "select u.idUsuario, u.nomeUsuario, u.nickUsuario, u.emailUsuario, d.idUsuarioFk, d.rank
-		 from usuario as u inner join dadosUsuario as d on u.idUsuario = d.idUsuarioFk where :email in (u.nickUsuario , u.emailUsuario) and u.senhaUsuario = :senha";
+		$query= "select idUsuario, nomeUsuario, nickUsuario, emailUsuario, rank
+		 from usuario where :emailUsuario in (nickUsuario , emailUsuario) and senhaUsuario = :senhaUsuario";
 		$stmt=$this->db->prepare($query);
-		$stmt->bindValue(':email', $this->__get('email'));
-		$stmt->bindValue(':senha', $this->__get('senha'));
+		$stmt->bindValue(':emailUsuario', $this->__get('emailUsuario'));
+		$stmt->bindValue(':senhaUsuario', $this->__get('senhaUsuario'));
 		$stmt->execute();
 		$usuario = $stmt->fetch(\PDO::FETCH_ASSOC);
 		if($usuario['idUsuario'] !='' && $usuario['nomeUsuario'] != ''){
-			$this->__set('id', $usuario['idUsuario']);
-			$this->__set('nome', $usuario['nomeUsuario']);
+			$this->__set('idUsuario', $usuario['idUsuario']);
+			$this->__set('nomeUsuario', $usuario['nomeUsuario']);
 			$this->__set('rank', $usuario['rank']);
 		}
 		return $this;
 	}
-	public function pegaInfoUsuario(){
-		$query = "select u.idUsuario, u.nomeUsuario, u.nickUsuario, u.emailUsuario, d.idUsuarioFk, d.rank,d.rgUsuario,d.cpfUsuario,d.endUsuario,d.nascUsuario,d.naciUsuario,d.cepUsuario
-		 from usuario as u inner join dadosUsuario as d on u.idUsuario = d.idUsuarioFk where idUsuario= :id_usuario";
-		$stmt=$this->db->prepare($query);
-			$stmt->bindValue(':id_usuario', $this->__get('id'));
-			$stmt->execute();
-			return $stmt->fetch(\PDO::FETCH_ASSOC);
-	}
-	public function pegaInfoUsuarioLog(){
+	
+	public function aaaaInfoUsuario(){
 		$query = "select idUsuario, nomeUsuario, nickUsuario
 		 from usuario where idUsuario= :id_usuario";
 		$stmt=$this->db->prepare($query);
