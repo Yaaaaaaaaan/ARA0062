@@ -1,0 +1,89 @@
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-success fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/painel">Corpus'Fit</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <li class="nav-item">
+                        <a class="nav-link active" href="/clientes">Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/horarios">Horários</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/painel">Inicial</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/sair">Sair</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link active" href="/configs"><?= $this->view->infoUsuario['nomeUsuario'] ?></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row text-center"> 
+            <div class="col-md-12 order-md-1">
+                <hr>
+                <h4 class="mb-4">Dados do Cliente</h4>
+                <hr>
+            </div>
+        </div>
+        <form class="needs-validation mx-auto" method="POST" action="/cadastroCliente">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 mb-3">
+                    <label for="primeiroNome">Nome</label>
+                    <input type="text" class="form-control" id="" placeholder="Ex.: Luiz Gabriel Zacarias Pontes" name="nomeUsuario" value="<?= $this->view->cliente['nomeUsuario'] ?>">
+                </div>
+            </div>          
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 mb-3">
+                    <label for="email">Email</label>
+                    <input type="email" name="emailUsuario" class="form-control" id="" placeholder="Ex.: LuizGZPJKL@exemplo.com" value="<?= $this->view->cliente['emailUsuario'] ?>">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 mb-3">
+                    <label for="sobrenome">Nick</label>
+                    <input type="text" name="nickUsuario" class="form-control" id="" placeholder="Ex.: LuizGZPJKL" value="<?= $this->view->cliente['nickUsuario'] ?>">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 mb-3">
+                    <label for="sobrenome">Senha</label>
+                    <input type="password" name="senhaUsuario" class="form-control" id="" placeholder="Insira aqui a senha." value="<?= $this->view->cliente['senhaUsuario'] ?>">
+                </div>
+            </div>
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3">
+                        <div class="form-inline">
+                            <label for="rank" class="my-1 mr-2">Rank</label>
+                            <select class="custom-select my-0 mr-0" id="" name="rank">
+                                <option value="<?= $this->view->cliente['rank'] ?>"><?php if($this->view->cliente['rank']!=''){if($this->view->cliente['rank']==1){echo "Usuario";}else{echo"admin";}}else{echo 'Escolha o ranking';}?></option>
+                                <option value="1">Usuario</option>
+                                <option value="9">Admin</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 15px"> 
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <button class="btn btn-success btn-block" type="submit">Salvar alterações</button>
+                        <?php if($this->view->erroCadastro){ ?>
+                            <small class="form-text text-danger">*Erro ao tentar realizar o cadastro, verifique se os campos foram preenchidos corretamente.<small>
+                        <?php } ?>
+                    </div>
+                </div>
+            </form>
+    </div>
