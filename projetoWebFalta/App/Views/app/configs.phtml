@@ -1,0 +1,142 @@
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-success fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/painel">Corpus'Fit</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <li class="nav-item">
+                        <a class="nav-link" href="/clientes">Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/horarios">Horários</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/painel">Inicial</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/sair">Sair</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link active" href="/configs"><?= $this->view->infoUsuario['nomeUsuario'] ?></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row text-center"> 
+            <div class="col-md-12 order-md-1">
+                <hr>
+                <h4 class="mb-4">Dados pessoais</h4>
+                <hr>
+            </div>
+        </div>
+        <form class="needs-validation mx-auto" novalidate="">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 mb-3">
+                    <label for="primeiroNome">Nome</label>
+                    <input type="text" class="form-control" id="primeiroNome" placeholder="" value="<?= $this->view->infoUsuario['nomeUsuario'] ?>" required="">
+                </div>
+            </div>
+            <!--<div class="row">
+                <div class="col-md-3"></div>
+                <div class=" col-md-3 mb-3">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">CPF</span>
+                        </div>
+                        <input type="text" readonly class="form-control" id="nickname" placeholder="123.456.789-10" required="" value=" $this->view->infoUsuario['cpfUsuario']">
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">RG</span>
+                        </div>
+                        <input type="text" readonly class="form-control" id="nickname" placeholder="123.456.789-10" required="" value=" $this->view->infoUsuario['rgUsuario'] ">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 mb-3">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">nascimento</span>
+                        </div>
+                        <input type="date" class="form-control" id="nickname" placeholder="123.456.789-10" required="" value=" $this->view->infoUsuario['nascUsuario'] ">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 mb-3">
+                    <label for="pais">Nacionalidade</label>
+                    <input type="text" class="form-control" id="nickname" placeholder="123.456.789-10" required="" value=" $this->view->infoUsuario['naciUsuario'] ">
+                </div>
+          </div>-->
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 mb-3">
+                    <label for="email">Email <span class="text-muted">(Opcional)</span></label>
+                    <input type="email" class="form-control" id="email" placeholder="fulano@exemplo.com" value="<?= $this->view->infoUsuario['emailUsuario'] ?>">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 mb-3">
+                    <label for="sobrenome">Nick</label>
+                    <input type="text" readonly class="form-control" id="sobrenome" placeholder="" value="<?= $this->view->infoUsuario['nickUsuario'] ?>" required="">
+                </div>
+            </div>
+            <!--<div class="row">
+                <div class="col-md-3"></div>    
+                <div class="col-md-6 mb-3">
+                    <label for="endereco">Endereço</label>
+                    <input type="text" class="form-control" id="endereco" placeholder="Rua dos bobos, nº 0" value=" $this->view->infoUsuario['endUsuario'] " required="">
+                </div>
+            </div>
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class=" col-md-3 mb-3">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text">CEP</span>
+                            </div>
+                            <input type="text" class="form-control" id="nickname" value=" $this->view->infoUsuario['cepUsuario'] " placeholder="12.345-678" required="">
+                        </div>
+                    </div>
+                </div>-->
+                  <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 mb-3">
+                    <label for="sobrenome">Senha</label>
+                    <input type="password" name="senhaUsuario" class="form-control" id="" placeholder="Insira aqui a senha." value="<?= $this->view->infoUsuario['senhaUsuario'] ?>">
+                </div>
+            </div>
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3">
+                        <div class="form-inline">
+                            <label for="rank" class="my-1 mr-2">Rank</label>
+                            <select class="custom-select my-0 mr-0" id="" name="rank">
+                                <option value="<?= $this->view->infoUsuario['rank'] ?>"><?php if($this->view->infoUsuario['rank']!=''){if($this->view->infoUsuario['rank']==1){echo "Usuario";}else{echo"admin";}}else{echo 'Escolha o ranking';}?></option>
+                                <option value="1">Usuario</option>
+                                <option value="9">Admin</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 15px">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <button class="btn btn-success btn-block" type="submit">Salvar alterações</button>
+                    </div>
+                </div>
+            </form>
+    </div>

@@ -1,0 +1,63 @@
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-success fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/painel">Corpus'Fit</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <li class="nav-item">
+                        <a class="nav-link active" href="/clientes">Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/horarios">Horários</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/painel">Inicial</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/sair">Sair</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link active" href="/configs"><?= $this->view->infoUsuario['nomeUsuario'] ?></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+               <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Email</th>
+      <th scope="col">nick</th>
+      <th scope="col">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach($this->view->exibeclientes as $exibeclientes){?>
+            <tr>
+              <th scope="row"><?=$exibeclientes['idUsuario']?></th>
+                <td><?=$exibeclientes['nomeUsuario']?></td>
+                <td><?=$exibeclientes['emailUsuario']?></td>
+                <td><?=$exibeclientes['nickUsuario']?></td>
+                  <td><a href="/funcao?funcao=deletaUsuario&idUsuario=<?=$exibeclientes['idUsuario']?>"class="btn btn-danger"><small>Excluir</small></a><a class="btn btn-warning" href="/funcao?funcao=editaUsuario&idUsuario=<?=$exibeclientes['idUsuario']?>"><small>Alterar</small></a></td>
+              </tr>  
+             
+          
+      <?php }?>
+     </tr>
+  </tbody>
+</table>
+
+
+                <a class="btn btn-success btn-block" href="/novocliente">+ Cliente</a>
+            </div>
+        </div>
+    </div>

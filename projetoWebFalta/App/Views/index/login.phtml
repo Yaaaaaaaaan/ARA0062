@@ -1,0 +1,18 @@
+ <link rel="stylesheet" type="text/css" href="/css/naforcadoodio.css">
+
+  <body class="text-center">
+    <form class="form-signin" method="post" action="/autenticar">
+      <a href= "/"><img style="border-radius:10px;" class="mb-4" src="https://i.imgur.com/Hx8RYaS.png" alt="" width="72" height="72"></a>
+      <h1 class="h3 mb-3 font-weight-normal">Conecte-se por favor</h1>
+      <input type="text" id="inputEmail" class="form-control" placeholder="endereço de Email" required="" autofocus="" name="emailUsuario">
+      <input type="password" id="inputPassword" class="form-control" placeholder="senha" required="" name="senhaUsuario">
+        <?php if($this->view->login== 'erro'){ ?>
+				
+					<div class='row'>
+						<div class="col">
+							<span class="text text-danger">*Email ou senha inválidos</span>
+						</div>
+					</div> <?php } ?>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+      <p class="mt-5 mb-3 text-muted">Desenvolvido por: Emmanuel, Leo, PH, e Yan © 2020</p>
+    </form>
